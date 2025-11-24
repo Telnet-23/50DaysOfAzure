@@ -1,1 +1,7 @@
 # 50DaysOfAzure
+
+This challenge is by KodeKloud and forms part of the 100 Days of Cloud series, specifically focused on Azure. There’s also an AWS version, and each track includes 50 challenges. I’m very much an Azure person (having already completed AZ-900 and AZ-104), so I’ve decided to stick with what I know best for now. I may tackle the AWS challenges later, but at the moment Azure is my priority. Azure tends to be more widely adopted in my area of the UK, which means better job opportunities. My goal is to master Azure before moving on to AWS because let’s face it, that will come eventually.
+
+I’m not starting from scratch with Azure. I use it at work, I’ve passed certifications, and I keep up with changes through weekly John Saville updates. That said, I’m a bit rusty. Much of my day to day work involves repetitive deployments, and I’ve forgotten a lot of the finer details. This 50 part challenge should help refresh my knowledge and bring me back to a strong level of Azure administration. Combined with the 100 Days of DevOps series, I hope it will put me in a good position to pursue the AZ-400 (Azure DevOps Expert) certification. Alongside this, I’ll be building repositories for all the projects and challenges I complete.
+
+Ultimately, my goal is to move into a DevOps focused role. I love the idea of being a Cloud Infrastructure Engineer who leverages DevOps tools and practices to automate deployments and monitoring.
