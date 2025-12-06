@@ -26,13 +26,23 @@ You may need to adjust the firewall or security group rules for the VM to allow 
 
 First, I tried to SSH using the VM name but it failed (DNS, its always DNS). So I instead ran ```az network public-ip list``` and obtained the public IP.
 
+After that I viewd the key in /root/.ssh/id_rsa.pub using ```cat /root/.ssh/id_rsa.pub``` and copied the key to a notepad.
+
 The I did the following:
 ```ssh azureuser@172.184.152.48```
 
-Now it was time to confirm if the directory exisited and if not, create it. So you're aware, It did not. I made the directory and set the permissions to allow the user rwx, with the group having no permission
-```sudo mkdir -p /root/.ssh && sudo chmod 700 /root/.ssh```
+Then I elevated my permissions to the root user with 
+```sudo su``` then navigated to the root home directory with ```cd ~```
 
-Then I created the authorised_keys directory and set the permissions and chaged the ownership user and group to root
-```sudo chmod 600 /root/.ssh/authorized_keys```
-```sudo chown root:root /root/.ssh/authorized_keys```
+The confirmed the directory was present with ```ls -a``` followed by ```cd .ssh```
+
+At this point I opene the authorised_keys file with ```vi authorised_keys``` and pasted the contents of the key into that file then ```:wq!```
+
+I then confirmed the key want in correctly with ```cat authorised_keys``` then left the vm with ```exit```
+
+Once I exited the vm, I ran ```ssh root@172.184.152.48``` and boom, I was in as root. 
+
+## Thoughts and takeaways
+
+That challenge was weirdly hard. I cant quite explain it but when I SSH'd into the box and swithed to root, I added the key in the correct place but the ssh as root still didnt work. I had to navigate to the home directory with ```cd ~``` before going to .ssh. This doesnt really make sense as ```pwd``` told me I was already there. I'm sure theres a reason. Also I reckon theres a better way of doing this then copying and pasting but I couldnt get SCP to work without the root credentials so maybe not. Let me know if you know a better way :smile: time for tea. 
 
