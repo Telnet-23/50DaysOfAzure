@@ -13,7 +13,7 @@ Then create the storage account
 ```az storage account create --name nautilusst21842 --resource-group kml_rg_main-1e3a8b50aff84395 --allow-blob-public-access true```
 
 Now, this command, I did a lot of backward and forward with to decide what parameter to use on the end, ```--public-access blob``` or what I've placed below. I decided on below as it closer refeltcs what is being asked in the question.
-```az storage container create --name nautilus-blob-19525 --account-name nautilusst21842 --public-access blob```
+```az storage container create --name nautilus-blob-19525 --account-name nautilusst21842 --public-access container```
 
 ## Note. 
-This failed. Not entirely sure why yet so I'll work it out and update the doc :)
+This failed first time. I set the --public-access on the container to blob not container and it failed. Error resolved. Not bad. Good test :smile: time for tea. 
