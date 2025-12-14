@@ -29,6 +29,6 @@ Once the VM is created, obtain the public IP from the resource and ssh into it w
 <img width="691" height="449" alt="Screenshot 2025-12-14 at 19 50 04" src="https://github.com/user-attachments/assets/1918506b-6e04-4304-bd5d-cb6821f9ebc7" />
 
 ## Thoughts and takeaways
-
+This one was weirdly difficult. I mean, it wasnt, but it was in the CLI. I hit issue after issue and I couldnt work out how to add the public key to the vm during the build using the CLI. I'm sure there's a way and I'll keep digging to see if I can work it out. Time for tea.
 
 
