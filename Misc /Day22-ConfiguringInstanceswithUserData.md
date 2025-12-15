@@ -17,7 +17,7 @@ Network Security Group (NSG): Ensure that the VM allows HTTP traffic on port 80 
 
 ## The Solution
 
-This one is pretty simple, Basically follow what you did yesterday around the VM build but also allow port 80 inbound as well as SSH:
+This one is pretty simple, Basically follow what you did yesterday around the VM build but also allow port 80 inbound as well as SSH. I also generated an SSH key on the host and added the public key to the VM, But you dont have to do this. 
 <img width="855" height="454" alt="Screenshot 2025-12-15 at 21 02 27" src="https://github.com/user-attachments/assets/58d81869-fa74-4693-ae5f-7caba83a5932" />
 
 Continue with teh task but add a short basic bash script to install, start and enable NGINX
