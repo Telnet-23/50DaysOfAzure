@@ -13,6 +13,7 @@ As a member of the team, perform the following steps:
 I'm going to break this down into 2 sections because to me, this is 50% Azure admin and 50% Linux admin. Which is fine but to make it easier to digest :smile:
 
 STEP 1
+
 First get all the required information abount the existing disk such as resource group and confirming its current size.
 ```az disk list```
 
@@ -36,6 +37,7 @@ Obtain the public IP on associated with the VM before accessing it via SSH
 ```az network public-ip list```
 
 STEP 2
+
 There maybe a simpler way of doing this, but I'm far from uncomfortable in Linux so I figured I'd go all in. The task didnt ask you format the disk or anything but if you plan on using it, you'll need to format the disk so this is how you do it. 
 
 SSH into the machine
