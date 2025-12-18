@@ -14,7 +14,7 @@ I'm going to break this down into 2 sections because to me, this is 50% Azure ad
 
 STEP 1
 
-First get all the required information abount the existing disk such as resource group and confirming its current size.
+First get all the required information about the existing disk such as resource group and confirming its current size.
 ```az disk list```
 
 Then before you can do anything, stop and deallocate the VM
@@ -22,7 +22,7 @@ Then before you can do anything, stop and deallocate the VM
 az vm stop --name nautilus-vm --resource-group KML_RG_MAIN-2E98568732C146E8
 az vm deallocate --name nautilus-vm --resource-group KML_RG_MAIN-2E98568732C146E8
 ```
-With the Vm stopped, you can resize its attached disk 
+With the VM stopped, you can resize it's attached disk 
 ```az disk update --name nautilus-vm_disk1_0efd1164ddf941aaaeb9d11ae8ec4ec4 --resource-group KML_RG_MAIN-2E98568732C146E8 --size-gb 64```
 
 And while it's off, you might as well create the new disk and attach it to the VM
@@ -30,35 +30,35 @@ And while it's off, you might as well create the new disk and attach it to the V
 az disk create --name nautilus-disk --resource-group KML_RG_MAIN-2E98568732C146E8 --size-gb 64 --sku Standard_LRS
 az vm disk attach --resource-group KML_RG_MAIN-2E98568732C146E8 --vm-name nautilus-vm --name nautilus-disk
 ```
-Then start the Vm again now the disk changes have been made. 
+Then start the VM again now that the disk changes have been made. 
 ```az vm start --name nautilus-vm --resource-group KML_RG_MAIN-2E98568732C146E8```
 
-Obtain the public IP on associated with the VM before accessing it via SSH
+Obtain the public IP associated with the VM to access it via SSH
 ```az network public-ip list```
 
 STEP 2
 
-There maybe a simpler way of doing this, but I'm far from uncomfortable in Linux so I figured I'd go all in. The task didnt ask you format the disk or anything but if you plan on using it, you'll need to format the disk so this is how you do it. 
+There maybe a simpler way of doing this, but I'm far from uncomfortable in Linux so I figured I'd go all in. The task didn't ask you format the disk or anything but if you plan on using it, you'll need to format the disk so this is how you do it. 
 
 SSH into the machine
 ```ssh azureuser@52.241.144.34```
 
-Lisk all disks on the machine to confirm what your new disk is called. You will see it does not have a mount point and is 64GB. All disks if you're unaware are in the/dev directory in Linux. 
+Lisk all disks on the machine to confirm what your new disk is called. You will see it does not have a mount point and is 64GB. All disks (if you're unaware) are in the /dev directory in Linux. 
 ```lsblk```
 
-Now we can format the disk usinf fdisk. Press enter on all the defaults to use the full disk as creation seperate partitions was not requested as part of the task. Once you've done that, enter ```w``` to write your changes.
+Now we can format the disk using fdisk. Press enter on all the defaults to use the full disk as creating seperate partitions was not requested as part of the task. Once you've done that, enter ```w``` to write your changes.
 ```sudo fdisk /dev/sda```
 
 Now lets make an ext4 file system on that partition. 
 ```sudo mkfs.ext4 /dev/sda```
 
 Once you've done that, create the directory in /mnt
-```/mnt/nautilus-disk```
+```sudo mkdir /mnt/nautilus-disk```
 
-Then, if you edit ftab, the disk will auto mount upon reboot. Below is the layout of the entry you will use to achieve this. 
+Then, if you edit fstab, the disk will auto mount upon reboot. Below is the layout of the entry you will use to achieve this. 
 ```/dev/sda /mnt/nautilus-disk ext4 defaults 0 0```
 
-If you dont want to reboot the server, frankly I woundn't in this challenge as I have noidea for the lab will behanve, you can remount all the disks. This command uses the fdisk file as its source of truth so if there is an error in your entry, it will tell you.
+If you don't want to reboot the server (frankly I woundn't in this challenge as I have noidea for the lab will behave), you can remount all the disks. This command uses the fdisk file as its source of truth so if there is an error in your entry, it will tell you.
 ```sudo mount -a```
 
 And finally, just for good measure, check your disk is now mounted with the correct mount path. 
