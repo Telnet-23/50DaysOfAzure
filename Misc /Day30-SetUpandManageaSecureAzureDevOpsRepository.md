@@ -14,3 +14,10 @@ The Nautilus DevOps Team has received a request from the Development Team to set
 Please use the same credentials provided for logging into the Azure portal to log in to the Azure DevOps portal.
 
 ## The Solution
+
+I'm not going to try this in the CLI, I started looking at how and trying to build a plan but even at step 2, I couldnt find a way to add the ssh key to the repo in the Dev tenant with the CLI. I'm sure theres a way and I'll certainly keep looking but I couldnt find one off the bat. 
+
+So first of all, sign into the tenant and add a repo as stated.
+
+
+** NOTE** And this is where this lab stops. For the life of me, I cannot open the DevOps tenant. it just re-directs to portal.azure.com. I've let KodeKloud know but for now, I cannot proceed. 
