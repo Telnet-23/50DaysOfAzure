@@ -1,5 +1,0 @@
-## The Problem
-
-
-
-## The Solution
