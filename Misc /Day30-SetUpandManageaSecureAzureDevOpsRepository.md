@@ -1,23 +1,35 @@
 ## The Problem
-The Nautilus DevOps Team has received a request from the Development Team to set up a new repository for better code management. They need a secure way to access the repository using SSH.
+The Nautilus DevOps team is strategizing the migration of a portion of their infrastructure to Azure. Recognizing the scale of this undertaking, they have opted to approach the migration in incremental steps rather than as a single massive transition. Recently, they started working on creating and configuring some database instances on Azure.
 
-1. Create an organization with the name it picks up by default ( do not use any custom name ), create a project named nautilus-project under it and an Azure DevOps repository named nautilus-repo under the same.
-   
-2. Add the root user's SSH public key from azure-client host to the Azure DevOps SSH keys.
-   
-3. Create an SSH config under /root/.ssh/config on azure-client host and make changes to authenticate with the created repository.
-   
-4. Clone the new repository on azure-client host under /root.
-   
-5. Add the contents of /root/pyapp directory to this repository, then add, commit, and push the changes to the repository. You might need to set the git user and email to commit your code; you can use any email ID and user name for that.
+For this task, create one publicly accessible Azure SQL Database instance along with the following details:
 
-Please use the same credentials provided for logging into the Azure portal to log in to the Azure DevOps portal.
+1. The name of the Azure SQL Database must be xfusion-sqldb.
+
+2. The server name must be xfusion-server-3015.
+
+3. The compute + storage configuration should be Basic (For less demanding workloads).
+
+4. The backup storage redundancy should be Locally-redundant backup storage.
+
+5. Set the login admin username to xfusion-admin and set an appropriate password.
+
+6. Set the database size to 2 GiB.
+
+7. Keep the rest of the configurations as default. Finally, make sure the database is in the Ready state before submitting this task.
 
 ## The Solution
+I was going to try this in the GUI but decided against it once I was unable to find any method that didnt involve a script. As that means that I would be learning absolutely nothing running a pre-made script, I opted for the GUI. 
 
-I'm not going to try this in the CLI, I started looking at how and trying to build a plan but even at step 2, I couldnt find a way to add the ssh key to the repo in the Dev tenant with the CLI. I'm sure theres a way and I'll certainly keep looking but I couldnt find one off the bat. 
+I will say that SQL and databases in general are not a strengh of mine asnd something that I will actively take on to learn more about. So with that all said, I opened Azure and made the Database as requested. 
+<img width="891" height="777" alt="image" src="https://github.com/user-attachments/assets/bb32657b-f0cb-4366-9f0e-44008ec36d22" />
 
-So first of all, sign into the tenant and add a repo as stated.
+And I ofcourse allowed plublic access
+<img width="919" height="559" alt="image" src="https://github.com/user-attachments/assets/f3f716c4-d794-47a9-985b-b044a26d2d83" />
+
+When I Went to create it, I kept getting a policy violation but once checking the logs, found it was due to the location. The deafault 'east us' was erroring when I initially tried to build it so I took a random stab in the dark. The logs told me the permitted locations so if you're readying this, use 'Westus'. 
+
+## Thoughts and takeaways
+Cool challenge. As mentioned, I dont do a great deal with databases so any hands on I can get with them, the better. Time for tea. 
 
 
-** NOTE** And this is where this lab stops. For the life of me, I cannot open the DevOps tenant. it just re-directs to portal.azure.com. I've let KodeKloud know but for now, I cannot proceed. 
+
